@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Task 04 </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+
+    <style>
+        div.lista-funcionarios {
+            border-width: 2px;
+            border-style: solid;
+            border-color: aqua;
+            font-size: 22pt;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Exemplo de Manipulação de Array e Objetos em JavaScript</h1>
+
+    <fieldset>
+        <legend>Manutenção de Funcionários</legend>
+        Por favor, preencha os dados abaixo: <br><br>
+        <label for="cpf">CPF: </label><input type="text" id="cpf" size="20" maxlength="30" placeholder="Informe o CPF">
+        <label for="nome">Nome: </label><input type="text" id="nome" size="20" maxlength="50"
+            placeholder="Informe o nome">
+        <label for="cargo">Cargo: </label><input type="text" id="cargo" size="20" maxlength="30"
+            placeholder="Informe o cargo">
+        <label for="sal">Salário: </label><input type="text" id="sal" size="20" maxlength="10"
+            placeholder="Informe o salário">
+        <button type="button" id="botao-add" onclick="updateLista();" class="btn btn-lg btn-primary">Adicionar</button>
+    </fieldset>
+
+    <br><br>
+
+    <div class="lista-funcionarios">Lista de Funcionários</div><br>
+    <input type="submit" value="Ordenar por Cpf">
+    <input type="submit" value="Ordenar por Nome">
+    <input type="submit" value="Ordenar por Salário">
+    <label for="sal2">Salário maior que: </label><input type="text" id="sal2" size="20" maxlength="10">
+    <input type="submit" value="Filtrar"><br><br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <table id="lista" class="table table-bordered table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>CPF</th>
+                            <th>Nome</th>
+                            <th>Cargo</th>
+                            <th>Salário</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+            </div>
+            <!--// .col-md-6 -->
+        </div>
+        <!--// .row -->
+    </div>
+    <!--// .container -->
+    </table>
+
+    <script type="text/javascript">
+        function addFunc() {
+            // Verifica se já existe a tag <tbody>, if not, add
+            if ($("#lista tbody").length == 0) {
+                $("#lista").append("<tbody></tbody>");
+            }
+            $("#lista tbody").append(
+                "<tr>" +
+                    "<td>" + $("#cpf").val() + "</td>" +
+                    "<td>" + $("#nome").val() + "</td>" +
+                    "<td>" + $("#cargo").val() + "</td>" +
+                    "<td>" + $("#sal").val() + "</td>" +
+                    "<td>" +
+                        "<button type='button' " +
+                        "onclick='removeFunc(this);' " +
+                        "class='btn btn-danger'>" +
+                        "</button>" +
+                    "</td>" +
+                "</tr>"
+            );
+        }
+
+        function formClear() {
+            $("#cpf").val("");
+            $("#nome").val("");
+            $("#cargo").val("");
+            $("#sal").val("");
+        }
+
+        function updateLista() {
+            if ($("#cpf").val() != null && $("#cpf").val() != '') {
+                addFunc(); // Add funcionário
+                formClear(); // Limpa formulário
+                $("cpf").focus();
+            }
+        }
+
+        function removeFunc(_delete){
+            $(_delete).parents("tr").remove();
+        }
+
+    </script>
+
+    <footer>
+        <!-- JavaScript -->
+        <script src="js/popper.min.js" type="text/javascript"></script>
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    </footer>
+</body>
+
+</html>
